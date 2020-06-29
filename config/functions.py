@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # _*_ coding:utf8 _*_
 
+import platform #temporary line deleting when using main file
+
 
 def cprint(text='', color='', tbold=False, tsubline=False):
 	global colors
@@ -18,14 +20,19 @@ def cprint(text='', color='', tbold=False, tsubline=False):
 
 	if tbold & tsubline:
 		print(f"{selected_color}{using_bold}{using_subline}{text}"); return 0
+
 	elif tbold:
 		print(f"{selected_color}{using_bold}{text}"); return 0
+
 	elif tsubline:
 		print(f"{selected_color}{using_subline}{text}"); return 0
+	
 	else:
 		print(f"{selected_color}{text}"); return 0
 
+def clear(os = platform.system()):
+	if os != 'Linux':
+		os.system('cls'); print('\n')
 
-def checking_packages():
-	list_packages = m[1] for m in iter_modules(), sep='\n'
-	print(list_packages)
+	else:
+		os.system('clear'); print('\n')

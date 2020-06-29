@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 #_*_ coding:utf8 _*_
-	
-from pkgutil import iter_modules
+
 from config.functions import cprint
-from config.functions import checking_packages
+from config.shell import Shell
 
 import sys
 import socket
@@ -12,13 +11,5 @@ import getpass
 import requests
 import json
 import dns.resolver
-import pip
-import cmd
+import platform
 
-try:
-	import nmap
-except ImportError:
-	sys.exit(cprint('\n[!] ImportError exception, please make sure that you have nmap\n', 'red'))
-
-
-checking_packages()
