@@ -3,6 +3,7 @@
 
 import platform
 import sys
+import getpass
 from subprocess import call
 
 def cprint(text='', color='', tbold=False, tsubline=False, end='\n'):
@@ -50,3 +51,7 @@ def print_banner():
 ██║╚██╔╝██║██║     ██║   ██║ ██║   ██║   
 ██║ ╚═╝ ██║╚██████╗╚██████╔╝ ██║   ██║   
 ╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚═╝   ╚═╝   """, 'green')
+
+
+def welcome():
+	

@@ -6,6 +6,7 @@ from config.functions import cprint
 from config.functions import clear
 from config.functions import leave
 from config.functions import print_banner
+from config.functions import welcome
 
 class Shell(cmd.Cmd):
 	bold = '\033[1m'
