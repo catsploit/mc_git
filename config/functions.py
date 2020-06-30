@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 # _*_ coding:utf8 _*_
 
-import platform #temporary line deleting when using main file
+import platform
+import sys
+from subprocess import call
 
-
-def cprint(text='', color='', tbold=False, tsubline=False):
-	global colors
-
+def cprint(text='', color='', tbold=False, tsubline=False, end='\n'):
 	colors = {
 	'bold': '\033[1m',
 	'subline': '\033[4m',
@@ -30,9 +29,24 @@ def cprint(text='', color='', tbold=False, tsubline=False):
 	else:
 		print(f"{selected_color}{text}"); return 0
 
+
 def clear(os = platform.system()):
 	if os != 'Linux':
-		os.system('cls'); print('\n')
+		call('cls'); print('\n')
 
 	else:
-		os.system('clear'); print('\n')
+		call('clear'); print('\n')
+
+
+def leave():
+	sys.exit(cprint("[-] Leaving . . .\n", 'cyan', True))
+
+
+def print_banner():
+		cprint("""
+███╗   ███╗ ██████╗ ██████╗  ██╗████████╗
+████╗ ████║██╔════╝██╔════╝ ███║╚══██╔══╝
+██╔████╔██║██║     ██║  ███╗╚██║   ██║   
+██║╚██╔╝██║██║     ██║   ██║ ██║   ██║   
+██║ ╚═╝ ██║╚██████╗╚██████╔╝ ██║   ██║   
+╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚═╝   ╚═╝   """, 'green')

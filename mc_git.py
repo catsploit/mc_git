@@ -1,15 +1,18 @@
 #!/usr/bin/python3
 #_*_ coding:utf8 _*_
 
-from config.functions import cprint
+#from config.functions import cprint
+#from config.functions import clear
 from config.shell import Shell
 
-import sys
 import socket
 import os
 import getpass
 import requests
 import json
 import dns.resolver
-import platform
 
+
+if __name__ == '__main__':
+	shell_object = Shell()
+	shell_object.cmdloop()

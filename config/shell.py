@@ -2,10 +2,10 @@
 #_*_ coding:utf8 _*_
 
 import cmd
-import sys
-import platform, os #temporary line, deleting when using main file
-from functions import cprint
-from functions import clear
+from config.functions import cprint
+from config.functions import clear
+from config.functions import leave
+from config.functions import print_banner
 
 class Shell(cmd.Cmd):
 	bold = '\033[1m'
@@ -21,11 +21,14 @@ class Shell(cmd.Cmd):
 	def do_test(self, args):
 		print("This is a test line XD\n")
 
+	def do_clear(self, args):
+		clear()
+
 	def do_help(self, args):
 		cprint("actually there is nothing to see here...\n", "green")
 
 	def do_exit(self, args):
-		sys.exit(cprint("[-] Leaving . . .\n", 'cyan', True))
+		leave()
 
 	def emptyline(self):
 		pass
@@ -39,14 +42,4 @@ class Shell(cmd.Cmd):
 
 	def preloop(self):
 		clear()
-		cprint("""
-███╗   ███╗ ██████╗ ██████╗  ██╗████████╗
-████╗ ████║██╔════╝██╔════╝ ███║╚══██╔══╝
-██╔████╔██║██║     ██║  ███╗╚██║   ██║   
-██║╚██╔╝██║██║     ██║   ██║ ██║   ██║   
-██║ ╚═╝ ██║╚██████╗╚██████╔╝ ██║   ██║   
-╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚═╝   ╚═╝   """, 'green')
-
-
-shell_object = Shell()
-shell_object.cmdloop()
+		print_banner()
