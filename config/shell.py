@@ -1,22 +1,13 @@
 #!/usr/bin/python3
-#_*_ coding:utf8 _*_
+#_*_ coding:utf-8 _*_
 
 import cmd
-from config.functions import cprint
-from config.functions import clear
-from config.functions import leave
-from config.functions import print_banner
-from config.functions import welcome
+from config.functions import *
+from config.colors import *
+from config.tools.gethost import getbyhost
+
 
 class Shell(cmd.Cmd):
-	bold = '\033[1m'
-	subline = '\033[4m'
-	normal = '\033[0m'
-	red = '\033[0;31m'
-	cyan = '\033[0;36m'
-	green = '\033[0;32m'
-	white = '\033[0;37m'
-
 	prompt = f"{green}{bold}{subline}~/mcgit${normal}{white} "
 
 	def do_test(self, args):
@@ -30,6 +21,11 @@ class Shell(cmd.Cmd):
 
 	def do_exit(self, args):
 		leave()
+
+	def do_gethost(self, args):
+		get_args(args)
+		if len(args) > 1:
+			getbyhost(args)
 
 	def emptyline(self):
 		pass
