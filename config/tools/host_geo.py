@@ -19,17 +19,16 @@ def geolocate_host(host):
 		return json_request
 
 	info = info.split(',')
-	table = """\
-	+--------------------------------------+
-	|FIELD           |              CONTENT|
-	+--------------------------------------+
-	{}
-	+--------------------------------------+\
-	"""
-	
+	table = """{}
++--------------------------------------+
+|FIELD           |              CONTENT|
++--------------------------------------+
+""".format(cyan)
+
+	print(table, end='')
 	for i in info:
 		extract = requesting(host)[i]
-		print("{3}|{0:<15} >> {2}{1:>20}|".format(i, extract, white, cyan))
-	print('\n')
+		print("|{3}{0:<15}{2} >> {4}{3}{1:>19}{2}|".format(i, extract, cyan, bold, green))
+	print('+--------------------------------------+\n')
 
 #print("{0:<15} >> {2}{1:>20}".format(i, extract, white))
