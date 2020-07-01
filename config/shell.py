@@ -4,7 +4,7 @@
 import cmd
 from config.functions import *
 from config.colors import *
-from config.tools.gethost import getbyhost
+from config.tools.gethost import getbyhost, getbyhostdns
 
 
 class Shell(cmd.Cmd):
@@ -23,9 +23,18 @@ class Shell(cmd.Cmd):
 		leave()
 
 	def do_gethost(self, args):
-		get_args(args)
-		if len(args) > 1:
-			getbyhost(args)
+		flags = get_args(args)
+		
+		if flags != 0:
+			#print(flags)
+			if len(flags) == 1:
+				getbyhost(flags[0])
+
+			elif len(flags) == 2 and flags[1] == '-d':
+				getbyhostdns(flags[0])
+
+			else:
+				cprint("[!] gethost >> Invalid input\n", 'red', True)
 
 	def emptyline(self):
 		pass

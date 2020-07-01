@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# _*_ coding:utf8 _*_
+# _*_ coding:utf-8 _*_
 
 import platform
 import sys
@@ -59,7 +59,7 @@ def print_banner():
 		░  ░      ░  ░  ░        ░   ░  ░ ░    ░    {cyan}Hi! {bold}{user}{normal}
 		░      ░   ░           ░ ░   ░  ░ ░  ░      
     	   		░   ░ ░               ░  ░           
-           		░                                 '''.replace('░', f'{red}░{white}')
+           		░                                 \n'''.replace('░', f'{red}░{white}')
 	
 	return banner
 
