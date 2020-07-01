@@ -5,6 +5,7 @@ import cmd
 from config.functions import *
 from config.colors import *
 from config.tools.gethost import getbyhost, getbyhostdns
+from config.tools.host_geo import geolocate_host
 
 
 class Shell(cmd.Cmd):
@@ -35,6 +36,15 @@ class Shell(cmd.Cmd):
 
 			else:
 				cprint("[!] gethost >> Invalid input\n", 'red', True)
+
+	def do_geolocate(self, args):
+		flags = get_args(args)
+		if flags != 0:
+			if len(flags) == 1:
+				geolocate_host(flags[0])
+
+			else:
+				cprint("[!] geolocate >> Invalid input\n", 'red', True)
 
 	def emptyline(self):
 		pass
