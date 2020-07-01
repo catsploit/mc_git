@@ -15,7 +15,8 @@ def cprint(text='', color='', tbold=False, tsubline=False, ending='\n'):
 	'red': '\033[0;31m',
 	'cyan': '\033[0;36m',
 	'green': '\033[0;32m',
-	'yellow': '\033[0;33m'}
+	'yellow': '\033[0;33m',
+	'white': '\033[0;37m'}
 
 	selected_color = colors[color]
 	using_bold = colors['bold']
@@ -48,14 +49,19 @@ def leave():
 
 def print_banner():
 	user = getpass.getuser()
-	cprint(f"""
-███╗   ███╗ ██████╗ ██████╗  ██╗████████╗
-████╗ ████║██╔════╝██╔════╝ ███║╚══██╔══╝
-██╔████╔██║██║     ██║  ███╗╚██║   ██║   
-██║╚██╔╝██║██║     ██║   ██║ ██║   ██║   
-██║ ╚═╝ ██║╚██████╗╚██████╔╝ ██║   ██║   
-╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚═╝   ╚═╝1.0 """, 'yellow', True,  ending='')
-	print(f'{cyan}Hi! {bold}{user}\n')
+	banner = f'''
+		 ███▄ ▄███░ ▄████▄       ▄████  ██░▄▄▄█████░
+		░██░▀█▀ ██░░██▀ ▀█      ██░ ▀█░░██░░  ██░ ░░
+		░██    ░██░░▓█    ▄    ░██░▄▄▄░░██░░ ░██░ ░░ 
+		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░ 
+		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░ [1.0]
+		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░
+		░  ░      ░  ░  ░        ░   ░  ░ ░    ░    {cyan}Hi! {bold}{user}{normal}
+		░      ░   ░           ░ ░   ░  ░ ░  ░      
+    	   		░   ░ ░               ░  ░           
+           		░                                 '''.replace('░', f'{red}░{white}')
+	
+	return banner
 
 
 def get_args(parameters):

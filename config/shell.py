@@ -39,4 +39,4 @@ class Shell(cmd.Cmd):
 
 	def preloop(self):
 		clear()
-		print_banner()
+		print(print_banner())
