@@ -26,9 +26,13 @@ def geolocate_host(host):
 """.format(cyan)
 
 	print(table, end='')
-	for i in info:
-		extract = requesting(host)[i]
-		print("|{3}{0:<15}{2} >> {4}{3}{1:>19}{2}|".format(i, extract, cyan, bold, green))
-	print('+--------------------------------------+\n')
+	try:
+		for i in info:
+			extract = requesting(host)[i]
+			print("|{3}{0:<15}{2} >> {4}{3}{1:>19}{2}|".format(i, extract, cyan, bold, green))
+		print('+--------------------------------------+\n')
+
+	except KeyError:
+		cprint("[!] geolocate >> Unknown address\n", 'red', True)
 
 #print("{0:<15} >> {2}{1:>20}".format(i, extract, white))
