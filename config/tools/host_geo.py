@@ -19,20 +19,22 @@ def geolocate_host(host):
 		return json_request
 
 	info = info.split(',')
-	table = """{}
+	table = """{}\
+
 +--------------------------------------+
 |FIELD           |              CONTENT|
-+--------------------------------------+
-""".format(cyan)
+|--------------------------------------|
+{}+--------------------------------------+\
+"""
 
-	print(table, end='')
+	#print(table, end='')
 	try:
+		chain = ""
 		for i in info:
 			extract = requesting(host)[i]
-			print("|{3}{0:<15}{2} >> {4}{3}{1:>19}{2}|".format(i, extract, cyan, bold, green))
-		print('+--------------------------------------+\n')
+			text = "|{3}{0:<15}{2} >> {4}{3}{1:>19}{2}|\n".format(i, extract, cyan, bold, green)
+			chain += text
 
+		print(table.format(cyan, chain) + '\n')
 	except KeyError:
 		cprint("[!] geolocate >> Unknown address\n", 'red', True)
-
-#print("{0:<15} >> {2}{1:>20}".format(i, extract, white))
