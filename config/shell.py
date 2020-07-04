@@ -6,6 +6,7 @@ from config.functions import *
 from config.colors import *
 from config.tools.gethost import getbyhost, getbyhostdns
 from config.tools.host_geo import geolocate_host
+from config.tools.portscanner import Scannertool
 
 
 class Shell(cmd.Cmd):
@@ -27,13 +28,10 @@ class Shell(cmd.Cmd):
 		flags = get_args(args)
 		
 		if flags != 0:
-			#print(flags)
 			if len(flags) == 1:
 				getbyhost(flags[0])
-
 			elif len(flags) == 2 and flags[1] == '-d':
 				getbyhostdns(flags[0])
-
 			else:
 				cprint("[!] gethost >> Invalid input\n", 'red', True)
 
@@ -42,19 +40,22 @@ class Shell(cmd.Cmd):
 		if flags != 0:
 			if len(flags) == 1:
 				geolocate_host(flags[0])
-
 			else:
 				cprint("[!] geolocate >> Invalid input\n", 'red', True)
+
+	def do_portscanner(self, args):
+		import_nmap()
+		flags = get_args(args)
+
+		if flags != 0:
+			scanning_tool = Scannertool(flags)
+			scanning_tool.scanning()
 
 	def emptyline(self):
 		pass
 
 	def default(self, args):
 		cprint(f"[!] Unknown command '{args}'\n", 'red', True)
-
-	def precmd(self, args):
-		args = args.lower()
-		return(args)
 
 	def preloop(self):
 		clear()

@@ -72,3 +72,18 @@ def get_args(parameters):
 
 	else:
 		return(cprint("[!] Missing arguments\n", 'red', True))
+
+
+def import_nmap():
+	try:
+		import nmap
+	except ImportError:
+		sys.exit(cprint('[!] ImportError exception\n', 'red'))
+
+
+def sep_nmap_states(port_state):
+	states = {'open': green, 'filtered': cyan, 'closed': red}
+
+	for i in states:
+		if port_state == i:
+			return(f'{states[i]}{bold}'+f'{i}')

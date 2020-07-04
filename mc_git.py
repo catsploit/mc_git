@@ -5,12 +5,12 @@
 from config.functions import cprint
 from config.shell import Shell
 import sys
+
+
 try:
-	import nmap
-except ImportError:
-	sys.exit(cprint('[!] ImportError exception\n', 'red'))
+	if __name__ == '__main__':
+		shell_object = Shell()
+		shell_object.cmdloop()
 
-
-if __name__ == '__main__':
-	shell_object = Shell()
-	shell_object.cmdloop()
+except KeyboardInterrupt:
+	sys.exit(cprint("[!] CTRL-C Interrupt, leaving . . .\n", 'red', True))
