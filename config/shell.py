@@ -10,7 +10,8 @@ from config.tools.portscanner import Scannertool
 
 
 class Shell(cmd.Cmd):
-	prompt = f"{green}{bold}{subline}~/mcgit${normal}{white} "
+	user = getpass.getuser()
+	prompt = "{0}{1}{2}~/{1}mcgit@{3}${4}{5} ".format(green, bold, subline, user, normal, white)
 
 	def do_test(self, args):
 		print("This is a test line XD\n")
@@ -55,7 +56,7 @@ class Shell(cmd.Cmd):
 		pass
 
 	def default(self, args):
-		cprint(f"[!] Unknown command '{args}'\n", 'red', True)
+		cprint(f"[!] cmd >> Unknown command '{args}'\n", 'red', True)
 
 	def preloop(self):
 		clear()

@@ -1,1 +1,2 @@
-#que pasaaaa hijos del pico
+# there are some kind of people you can trust for 5 years or more, paying attention for them,
+# carry them in your arms, but you can't trust that they will do it the same way for u, i like unicorns uwu

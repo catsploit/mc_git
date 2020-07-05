@@ -78,7 +78,7 @@ def import_nmap():
 	try:
 		import nmap
 	except ImportError:
-		sys.exit(cprint('[!] ImportError exception\n', 'red'))
+		sys.exit(cprint("[!] portscanner >> ImportError exception, fix it by installing nmap\n", 'red', True))
 
 
 def sep_nmap_states(port_state):
@@ -87,3 +87,15 @@ def sep_nmap_states(port_state):
 	for i in states:
 		if port_state == i:
 			return(f'{states[i]}{bold}'+f'{i}')
+
+
+def get_nmap_flags(x):
+	print(x)
+	special_keywords = ['!minecraft_deep_scan']
+	for i in special_keywords:
+		if i in x:
+			arguments = " ".join(x).strip(i)
+			return(arguments)
+
+	arguments = " ".join(x)
+	return(arguments)
