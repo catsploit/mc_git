@@ -90,7 +90,7 @@ def sep_nmap_states(port_state):
 
 
 def get_nmap_flags(x):
-	print(x)
+	#print(x) #test line
 	special_keywords = ['!minecraft_deep_scan']
 	for i in special_keywords:
 		if i in x:
