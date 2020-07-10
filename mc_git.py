@@ -4,7 +4,7 @@
 #from config.functions import clear
 from config.functions import cprint
 from config.shell import Shell
-import sys
+from sys import exit
 
 
 try:
@@ -13,4 +13,4 @@ try:
 		shell_object.cmdloop()
 
 except KeyboardInterrupt:
-	sys.exit(cprint("[!] CTRL-C Interrupt, leaving . . .\n", 'red', True))
+	exit(cprint("[!] CTRL-C Interrupt, leaving . . .\n", 'red', True))

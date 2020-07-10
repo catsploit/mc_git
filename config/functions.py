@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 # _*_ coding:utf-8 _*_
 
-import platform
-import sys
-import getpass
+from platform import system
+from sys import exit
+from getpass import getuser
 from subprocess import call
 from config.colors import *
 
@@ -35,7 +35,7 @@ def cprint(text='', color='', tbold=False, tsubline=False, ending='\n'):
 		print(f"{selected_color}{text}", end=ending); return 0
 
 
-def clear(os = platform.system()):
+def clear(os = system()):
 	if os != 'Linux':
 		call('cls'); print('\n')
 
@@ -44,11 +44,11 @@ def clear(os = platform.system()):
 
 
 def leave():
-	sys.exit(cprint("[-] Leaving . . .\n", 'cyan', True))
+	exit(cprint("[-] Leaving . . .\n", 'cyan', True))
 
 
 def print_banner():
-	user = getpass.getuser()
+	user = getuser()
 	banner = f'''
 		 ███▄ ▄███░ ▄████▄       ▄████  ██░▄▄▄█████░
 		░██░▀█▀ ██░░██▀ ▀█      ██░ ▀█░░██░░  ██░ ░░

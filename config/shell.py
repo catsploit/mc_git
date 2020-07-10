@@ -6,11 +6,12 @@ from config.functions import *
 from config.colors import *
 from config.tools.gethost import getbyhost, getbyhostdns
 from config.tools.host_geo import geolocate_host
-from config.tools.portscanner import Scannertool
+#from config.tools.portscanner import Scannertool
+from config.tools.secondtryportscanner import Scannertoolv2
 
 
 class Shell(cmd.Cmd):
-	user = getpass.getuser()
+	user = getuser()
 	prompt = "{0}{1}{2}~/{1}mcgit@{3}${4}{5} ".format(green, bold, subline, user, normal, white)
 
 	def do_test(self, args):
@@ -47,10 +48,16 @@ class Shell(cmd.Cmd):
 	def do_portscanner(self, args):
 		import_nmap()
 		flags = get_args(args)
-
 		if flags != 0:
-			scanning_tool = Scannertool(flags)
-			scanning_tool.scanning()
+			try:
+				target = flags[0]
+				port_range = flags[1]
+				parameters = flags[2:]
+			except IndexError as e:
+				cprint(f"[!] portscanner >> Invalid input: {e}\n", 'red', True)
+			else:
+				port_scanner = Scannertoolv2(target, port_range, parameters)
+				port_scanner.port_lookup()
 
 	def emptyline(self):
 		pass

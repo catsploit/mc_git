@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 #-*- coding:utf-8 -*-
 
-import requests
-import json
+from requests import get
 from config.colors import *
 from config.functions import cprint
+import json
 
 
 def geolocate_host(host):
@@ -14,7 +14,7 @@ def geolocate_host(host):
 	data = {'fields': info}
 
 	def requesting(host):
-		request = requests.get(api, data=data)
+		request = get(api, data=data)
 		json_request = json.loads(request.content)
 		return json_request
 
