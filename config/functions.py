@@ -30,7 +30,7 @@ def cprint(text='', color='', tbold=False, tsubline=False, ending='\n'):
 
 	elif tsubline:
 		print(f"{selected_color}{using_subline}{text}", end=ending); return 0
-	
+
 	else:
 		print(f"{selected_color}{text}", end=ending); return 0
 
@@ -52,15 +52,15 @@ def print_banner():
 	banner = f'''
 		 ███▄ ▄███░ ▄████▄       ▄████  ██░▄▄▄█████░
 		░██░▀█▀ ██░░██▀ ▀█      ██░ ▀█░░██░░  ██░ ░░
-		░██    ░██░░▓█    ▄    ░██░▄▄▄░░██░░ ░██░ ░░ 
-		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░ 
+		░██    ░██░░▓█    ▄    ░██░▄▄▄░░██░░ ░██░ ░░
+		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░
 		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░ [1.0]
 		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░
 		░  ░      ░  ░  ░        ░   ░  ░ ░    ░    {cyan}Hi! {bold}{user}{normal}
-		░      ░   ░           ░ ░   ░  ░ ░  ░      
-    	   		░   ░ ░               ░  ░           
+		░      ░   ░           ░ ░   ░  ░ ░  ░
+    	   		░   ░ ░               ░  ░
            		░                                 \n'''.replace('░', f'{red}░{white}')
-	
+
 	return banner
 
 

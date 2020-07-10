@@ -39,7 +39,7 @@ class Scannertool():
 		table = """\
 PORT   STATUS          SERVICE
 ----   ------          -------
-{}		
+{}
 \
 """
 		try:
@@ -62,7 +62,7 @@ PORT   STATUS          SERVICE
 			if '!minecraft_deep_scan' in x:
 				self.y = i
 				port_table = self.checking_minecraft_service()
-				print(self.port_info_table.format(yellow + bold, bold, green, 
+				print(self.port_info_table.format(yellow + bold, bold, green,
 					self.server_banner, self.server_jar, self.server_users, self.y))
 
 		print('\n' + table.format(chain) + '\n')

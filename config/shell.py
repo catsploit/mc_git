@@ -27,7 +27,7 @@ class Shell(cmd.Cmd):
 
 	def do_gethost(self, args):
 		flags = get_args(args)
-		
+
 		if flags != 0:
 			if len(flags) == 1:
 				getbyhost(flags[0])
