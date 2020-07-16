@@ -6,8 +6,7 @@ from config.functions import *
 from config.colors import *
 from config.tools.gethost import getbyhost, getbyhostdns
 from config.tools.host_geo import geolocate_host
-#from config.tools.portscanner import Scannertool
-from config.tools.secondtryportscanner import Scannertoolv2
+from config.tools.portscannertool import Scannertool
 
 
 class Shell(cmd.Cmd):
@@ -56,8 +55,7 @@ class Shell(cmd.Cmd):
 			except IndexError as e:
 				cprint(f"[!] portscanner >> Invalid input: {e}\n", 'red', True)
 			else:
-				port_scanner = Scannertoolv2(target, port_range, parameters)
-				port_scanner.port_lookup()
+				Scannertool(target, port_range, parameters).port_lookup()
 
 	def emptyline(self):
 		pass
