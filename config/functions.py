@@ -3,8 +3,8 @@
 
 from platform import system
 from sys import exit
-from getpass import getuser
 from subprocess import call
+from getpass import getuser
 from config.colors import *
 
 
@@ -48,15 +48,14 @@ def leave():
 
 
 def print_banner():
-	user = getuser()
 	banner = f'''
 		 ███▄ ▄███░ ▄████▄       ▄████  ██░▄▄▄█████░
 		░██░▀█▀ ██░░██▀ ▀█      ██░ ▀█░░██░░  ██░ ░░
 		░██    ░██░░▓█    ▄    ░██░▄▄▄░░██░░ ░██░ ░░
-		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░
-		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░ [1.0]
-		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░
-		░  ░      ░  ░  ░        ░   ░  ░ ░    ░    {cyan}Hi! {bold}{user}{normal}
+		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░    ({red}Project log 1.0{white})
+		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░    {green}{bold}[+]{white} Added custom flags support
+		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░      {yellow}{bold}[~]{white} Building file output option with server info
+		░  ░      ░  ░  ░        ░   ░  ░ ░    ░
 		░      ░   ░           ░ ░   ░  ░ ░  ░
     	   		░   ░ ░               ░  ░
            		░                                 \n'''.replace('░', f'{red}░{white}')

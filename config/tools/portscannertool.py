@@ -30,7 +30,7 @@ class Scannertool:
 
     def write_output(self, Scanner, result):
         from config.colors import white
-        from config.functions import sep_nmap_states
+        from config.functions import sep_nmap_states, cprint
 
         if '!raw' in self.parameters:
             print(f'{white}{Scanner.csv()}\n')
@@ -43,7 +43,11 @@ class Scannertool:
             {}
             \
             """
-            ports = Scanner[self.target].all_tcp()
+            try:
+                ports = Scanner[self.target].all_tcp()
+            except KeyError:
+                return(cprint("[!] portscanner >> Please specify a port range\n", 'yellow'))
+
             table_chain = ""
             #print(ports)
             for port in ports:
@@ -66,7 +70,7 @@ class Flags(Scannertool):
     @staticmethod
     def get_nmap_flags(parameters):
         arguments = list(parameters)
-        special_keywords = ['!port_info', '!raw', '!fileout']
+        special_keywords = {'!port_info', '!raw', '!fileout'}
         for i in special_keywords:
             if i in parameters:
                 arguments.pop(arguments.index(i))
@@ -81,7 +85,7 @@ class Flags(Scannertool):
             method = getattr(self, method_name)
             return method(Scanner)
 
-        sp_flags = {'!port_info'}
+        sp_flags = {'!port_info', '!fileout'}
         for flag in sp_flags:
             if flag in self.parameters:
                 switch(flag)
@@ -105,5 +109,7 @@ class Flags(Scannertool):
                 server_inf = Scanner[self.target]['tcp'][port]['extrainfo'].replace(',', '\n\t\t      ')
                 print(table.format(green + bold, port, server_jar, server_inf))
 
-    def fileout():
-        pass
+    def fileout(self, Scanner):
+        with open('test.txt', 'w') as file:
+            file.write('testing the scanreport file uwu')
+            file.close()

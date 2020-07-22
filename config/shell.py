@@ -19,9 +19,6 @@ class Shell(cmd.Cmd):
 	def do_clear(self, args):
 		clear()
 
-	def do_help(self, args):
-		cprint("actually there is nothing to see here...\n", "green")
-
 	def do_exit(self, args):
 		leave()
 
@@ -56,6 +53,17 @@ class Shell(cmd.Cmd):
 				cprint(f"[!] portscanner >> Invalid input: {e}\n", 'red', True)
 			else:
 				Scannertool(target, port_range, parameters).port_lookup()
+
+	def do_help(self, args):
+		print("\033[0;42m")
+		print("\nI=================================================================================================I")
+		print("|Showing help list:                                                                               |")
+		print("|gethost <hostname> <[-d]>                :get hostname's ip, can specify a dns query by using -d |")
+		print("|geolocate <ip>                           :geolocate an ip by using the ip-api                    |")
+		print("|portscanner <ip> <port_range> <flags>    :scan server's ports, returning information about it    |")
+		print("|clear                                    :if your terminal is messed up                          |")
+		print("|exit                                     :leave the program                                      |")
+		print("I=================================================================================================I\n")
 
 	def emptyline(self):
 		pass
