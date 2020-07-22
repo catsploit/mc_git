@@ -16,7 +16,10 @@ class Scannertool:
         # - Scanning target - #
         Scanner = nmap.PortScanner()
         nmap_flags = Flags.get_nmap_flags(self.parameters)
-        result = Scanner.scan(self.target, self.port_range, '-sV' + nmap_flags)
+        try:
+            result = Scanner.scan(self.target, self.port_range, f'-sV {nmap_flags}')
+        except Exception as e:
+            return(cprint(f"[!] portscanner >> Something went wrong: '{e}'\n", 'red', True))
 
         # - Formatting output - #
         self.write_output(Scanner, result)
@@ -62,13 +65,13 @@ class Flags(Scannertool):
 
     @staticmethod
     def get_nmap_flags(parameters):
-        special_keywords = {'!port_info', '!raw'}
+        arguments = list(parameters)
+        special_keywords = ['!port_info', '!raw', '!fileout']
         for i in special_keywords:
             if i in parameters:
-                arguments = " ".join(parameters).strip(i)
-                return arguments
+                arguments.pop(arguments.index(i))
 
-        arguments = " ".join(parameters)
+        arguments = " ".join(arguments)
         return arguments
 
 
@@ -99,6 +102,8 @@ class Flags(Scannertool):
             port_service = Scanner[self.target]['tcp'][port]['name']
             if port_service == 'minecraft':
                 server_jar = Scanner[self.target]['tcp'][port]['version']
-                server_inf = Scanner[self.target]['tcp'][port]['extrainfo']
-
+                server_inf = Scanner[self.target]['tcp'][port]['extrainfo'].replace(',', '\n\t\t      ')
                 print(table.format(green + bold, port, server_jar, server_inf))
+
+    def fileout():
+        pass
