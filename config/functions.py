@@ -53,8 +53,8 @@ def print_banner():
 		░██░▀█▀ ██░░██▀ ▀█      ██░ ▀█░░██░░  ██░ ░░
 		░██    ░██░░▓█    ▄    ░██░▄▄▄░░██░░ ░██░ ░░
 		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░    ({red}Project log 1.0{white})
-		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░    {green}{bold}[+]{white} Added custom flags support
-		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░      {yellow}{bold}[~]{white} Building file output option with server info
+		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░    {red}{bold}[-]{white} File output option (Cancelled)
+		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░      {green}{bold}[+]{white} Instead, added output file with server info
 		░  ░      ░  ░  ░        ░   ░  ░ ░    ░
 		░      ░   ░           ░ ░   ░  ░ ░  ░
     	   		░   ░ ░               ░  ░
@@ -86,3 +86,8 @@ def sep_nmap_states(port_state):
 	for i in states:
 		if port_state == i:
 			return(f'{states[i]}{bold}{i}')
+
+def is_root(user = getuser()):
+	if user != "root":
+		return False
+	return True

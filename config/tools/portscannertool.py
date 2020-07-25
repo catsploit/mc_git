@@ -70,7 +70,7 @@ class Flags(Scannertool):
     @staticmethod
     def get_nmap_flags(parameters):
         arguments = list(parameters)
-        special_keywords = {'!port_info', '!raw', '!fileout'}
+        special_keywords = {'!port_info', '!raw'}
         for i in special_keywords:
             if i in parameters:
                 arguments.pop(arguments.index(i))
@@ -85,7 +85,7 @@ class Flags(Scannertool):
             method = getattr(self, method_name)
             return method(Scanner)
 
-        sp_flags = {'!port_info', '!fileout'}
+        sp_flags = {'!port_info'}
         for flag in sp_flags:
             if flag in self.parameters:
                 switch(flag)
@@ -108,8 +108,3 @@ class Flags(Scannertool):
                 server_jar = Scanner[self.target]['tcp'][port]['version']
                 server_inf = Scanner[self.target]['tcp'][port]['extrainfo'].replace(',', '\n\t\t      ')
                 print(table.format(green + bold, port, server_jar, server_inf))
-
-    def fileout(self, Scanner):
-        with open('test.txt', 'w') as file:
-            file.write('testing the scanreport file uwu')
-            file.close()

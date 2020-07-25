@@ -5,6 +5,7 @@ import cmd
 from config.functions import *
 from config.colors import *
 from config.tools.gethost import getbyhost, getbyhostdns
+from config.tools.getenv import getEnvironment
 from config.tools.host_geo import geolocate_host
 from config.tools.portscannertool import Scannertool
 
@@ -50,9 +51,18 @@ class Shell(cmd.Cmd):
 				port_range = flags[1]
 				parameters = flags[2:]
 			except IndexError as e:
-				cprint(f"[!] portscanner >> Invalid input: {e}\n", 'red', True)
+				raise cprint(f"[!] portscanner >> Invalid input: {e}\n", 'red', True)
 			else:
 				Scannertool(target, port_range, parameters).port_lookup()
+
+	def do_getenv(self, args):
+		import_nmap()
+		try:
+			parameters = args.split()[0]
+		except IndexError:
+			cprint("[!] getenv >> Invalid input\n", 'red', True)
+		else:
+			getEnvironment(parameters)
 
 	def do_help(self, args):
 		print("\033[0;42m")
