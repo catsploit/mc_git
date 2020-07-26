@@ -3,9 +3,18 @@
 
 import nmap
 from config.functions import is_root
+from config.tools import host_geo
+from config.colors import *
+
 class RootRequired(Exception): pass
 
-def getEnvironment(ip):
+def getEnvironment(parameters):
+    ip = parameters[0]
+    flag = None
+
+    if len(parameters) > 1:
+        flag = parameters[1]
+
     if is_root() != True:
         raise RootRequired("instruction require root priviliges for -sV & -O flags")
 
@@ -13,19 +22,31 @@ def getEnvironment(ip):
     result = Scanner.scan(str(ip), '25500-25565', '-sV -O' )
 
     OS_LIST = Scanner[str(ip)]['osmatch']
-    print(len(OS_LIST))
-
-    # - OS MATCH PARSED BY NMAP - #
+    chances = []
     for match in range(len(OS_LIST)):
-        OS_TYPE = Scanner[str(ip)]['osmatch'][match]['osclass'][0]
+        accuracy = Scanner[str(ip)]['osmatch'][match]['osclass'][0]['accuracy']
+        chances.append(int(accuracy))
 
-        osname = Scanner[str(ip)]['osmatch']['name']
-        accuracy = OS_TYPE['accuracy']
-        cpe = OS_TYPE['cpe'].strip('cpe:/o:')
+    OS_CHOOSEN = max(chances)
+    for chance in range(len(OS_LIST)):
+        select = OS_LIST[chance]['osclass'][0]
+        if select['accuracy'] == str(OS_CHOOSEN):
+            osname = Scanner[str(ip)]['osmatch'][chance]['name']
+            cpe = OS_LIST[match]['osclass'][0]['cpe'][0].strip('cpe:/o:')
+            break
 
-        print("\n<xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx>")
-        print(f"OS #{match}:")
-        print(f"NAME:{osfamily:>15}")
-        print(f"PROBABILITY:{accuracy:>9}")
-        print(f"CPE:{cpe:>16}")
-        print("<xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx>\n")
+    os_string = f"""
+    I>>>>>>>>>>>>OS_MATCH RESULTS<<<<<<<<<<<<<I
+    OS => {osname}
+    CPE => {cpe}
+    CHANCES => {OS_CHOOSEN}%
+    I>>>>>>>>>>>>----------------<<<<<<<<<<<<<I\n"""
+
+    print(f"{red}{bold}{os_string}")
+    if flag == '-out':
+        import time
+        filename = time.strftime('%X')
+
+        with open(f'environment_report_{filename}.txt', 'a') as file:
+            file.write(os_string)
+            file.close()

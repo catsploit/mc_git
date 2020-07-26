@@ -51,26 +51,26 @@ class Shell(cmd.Cmd):
 				port_range = flags[1]
 				parameters = flags[2:]
 			except IndexError as e:
-				raise cprint(f"[!] portscanner >> Invalid input: {e}\n", 'red', True)
+				cprint(f"[!] portscanner >> Invalid input: {e}\n", 'red', True)
 			else:
 				Scannertool(target, port_range, parameters).port_lookup()
 
 	def do_getenv(self, args):
 		import_nmap()
 		try:
-			parameters = args.split()[0]
+			parameters = get_args(args)
 		except IndexError:
 			cprint("[!] getenv >> Invalid input\n", 'red', True)
 		else:
 			getEnvironment(parameters)
 
 	def do_help(self, args):
-		print("\033[0;42m")
 		print("\nI=================================================================================================I")
 		print("|Showing help list:                                                                               |")
 		print("|gethost <hostname> <[-d]>                :get hostname's ip, can specify a dns query by using -d |")
 		print("|geolocate <ip>                           :geolocate an ip by using the ip-api                    |")
 		print("|portscanner <ip> <port_range> <flags>    :scan server's ports, returning information about it    |")
+		print("|getenv <host>                            :get host's environment (OS, Jar, Ubication, etc)       |")
 		print("|clear                                    :if your terminal is messed up                          |")
 		print("|exit                                     :leave the program                                      |")
 		print("I=================================================================================================I\n")
