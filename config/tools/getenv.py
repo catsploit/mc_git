@@ -58,10 +58,8 @@ def getEnvironment(parameters):
         filename = time.strftime('%X')
 
         with open(f'environment_report_{filename}.txt', 'a') as file:
-            file.write(f"> ENVIRONMENT RESULTS FROM: '{ip}''" <\n')
+            file.write(f"> ENVIRONMENT RESULTS FROM: '{ip}'\n")
             file.write(os_string + '\n')
-            file.write("I>>>>>>>>>>>>GEOLOCATE_RESULTS<<<<<<<<<<<<<<I\n")
             geolocate_out = geolocate_result.strip("[0;36m").strip("")
             file.write(geolocate_out)
-            file.write("I>>>>>>>>>>>>-----------------<<<<<<<<<<<<<<I\n")
             file.close()
