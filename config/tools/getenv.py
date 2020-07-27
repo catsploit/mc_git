@@ -2,8 +2,9 @@
 #-*- coding:utf-8 -*-
 
 import nmap
-from config.functions import is_root
-from config.tools import host_geo
+import time
+from config.functions import is_root, cprint
+from config.tools.host_geo import geolocate_host
 from config.colors import *
 
 class RootRequired(Exception): pass
@@ -18,9 +19,11 @@ def getEnvironment(parameters):
     if is_root() != True:
         raise RootRequired("instruction require root priviliges for -sV & -O flags")
 
+    cprint("[~] getenv >> Scanning target . . .", 'cyan', True)
     Scanner = nmap.PortScanner()
     result = Scanner.scan(str(ip), '25500-25565', '-sV -O' )
 
+    # - OS MATCH - #
     OS_LIST = Scanner[str(ip)]['osmatch']
     chances = []
     for match in range(len(OS_LIST)):
@@ -42,11 +45,23 @@ def getEnvironment(parameters):
     CHANCES => {OS_CHOOSEN}%
     I>>>>>>>>>>>>----------------<<<<<<<<<<<<<I\n"""
 
+    cprint("[+] getenv >> MATCH! OS-scan results:", 'green', True)
     print(f"{red}{bold}{os_string}")
+
+    # - geolocate host by ip-api - #
+    cprint("[~] getenv >> geolocating target . . .", 'cyan', True)
+    geolocate_result = geolocate_host(ip)
+    cprint("[+] getenv >> Located\n", 'green', True)
+    print(geolocate_result)
+
     if flag == '-out':
-        import time
         filename = time.strftime('%X')
 
         with open(f'environment_report_{filename}.txt', 'a') as file:
-            file.write(os_string)
+            file.write(f"> ENVIRONMENT RESULTS FROM: '{ip}''" <\n')
+            file.write(os_string + '\n')
+            file.write("I>>>>>>>>>>>>GEOLOCATE_RESULTS<<<<<<<<<<<<<<I\n")
+            geolocate_out = geolocate_result.strip("[0;36m").strip("")
+            file.write(geolocate_out)
+            file.write("I>>>>>>>>>>>>-----------------<<<<<<<<<<<<<<I\n")
             file.close()

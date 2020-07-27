@@ -27,7 +27,6 @@ def geolocate_host(host):
 {}+--------------------------------------+\
 """
 
-	#print(table, end='')
 	try:
 		chain = ""
 		for i in info:
@@ -35,6 +34,8 @@ def geolocate_host(host):
 			text = "|{3}{0:<15}{2} >> {4}{3}{1:>19}{2}|\n".format(i, extract, cyan, bold, green)
 			chain += text
 
-		print(table.format(cyan, chain) + '\n')
+		formatted_table = table.format(cyan, chain) + '\n'
+		return(formatted_table)
+
 	except KeyError:
 		cprint("[!] geolocate >> Unknown address\n", 'red', True)

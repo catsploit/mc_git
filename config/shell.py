@@ -38,7 +38,7 @@ class Shell(cmd.Cmd):
 		flags = get_args(args)
 		if flags != 0:
 			if len(flags) == 1:
-				geolocate_host(flags[0])
+				print(geolocate_host(flags[0]))
 			else:
 				cprint("[!] geolocate >> Invalid input\n", 'red', True)
 
@@ -62,7 +62,10 @@ class Shell(cmd.Cmd):
 		except IndexError:
 			cprint("[!] getenv >> Invalid input\n", 'red', True)
 		else:
-			getEnvironment(parameters)
+			try:
+				getEnvironment(parameters)
+			except Exception as e:
+				cprint(f"[!] getenv >> Error: '{e}'", 'red', True)
 
 	def do_help(self, args):
 		print("\nI=================================================================================================I")
