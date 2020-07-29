@@ -52,9 +52,9 @@ def print_banner():
 		 ███▄ ▄███░ ▄████▄       ▄████  ██░▄▄▄█████░
 		░██░▀█▀ ██░░██▀ ▀█      ██░ ▀█░░██░░  ██░ ░░
 		░██    ░██░░▓█    ▄    ░██░▄▄▄░░██░░ ░██░ ░░
-		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░    ({red}Project log 1.0{white})
-		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░    {red}{bold}[-]{white} File output option (Cancelled)
-		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░      {green}{bold}[+]{white} Instead, added output file with server info
+		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░    ({red}Project log 1.0.1{white})
+		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░    {green}{bold}[+] {white}Modified portscanner output
+		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░      {green}{bold}[+] {white}Added geolocation to getenv
 		░  ░      ░  ░  ░        ░   ░  ░ ░    ░
 		░      ░   ░           ░ ░   ░  ░ ░  ░
     	   		░   ░ ░               ░  ░

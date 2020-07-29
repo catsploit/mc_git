@@ -10,8 +10,9 @@ class Scannertool:
     def port_lookup(self):
         import nmap
         from config.functions import cprint
+        from config.colors import yellow, bold, normal
 
-        cprint(f"[~] portscanner >> scanning '{self.target}'\n", 'yellow', True)
+        print("{0}{1}[~] {0}Scanning {1}{2}{0} . . .\n".format(yellow, bold, self.target))
 
         # - Scanning target - #
         Scanner = nmap.PortScanner()
@@ -29,7 +30,7 @@ class Scannertool:
         get_flags.execute_flag(Scanner)
 
     def write_output(self, Scanner, result):
-        from config.colors import white
+        from config.colors import white, blue, bold, normal
         from config.functions import sep_nmap_states, cprint
 
         if '!raw' in self.parameters:
@@ -37,12 +38,10 @@ class Scannertool:
 
         else:
             table = """\
-            >> RESULTS FROM {}
-            [PORT]  [STATE]     [SERVICE]
-            -----    -----       -------
-            {}
-            \
-            """
+>> SCAN RESULTS FROM {} <<
+{}
+\
+"""
             try:
                 ports = Scanner[self.target].all_tcp()
             except KeyError:
@@ -56,10 +55,10 @@ class Scannertool:
                 port_state = sep_nmap_states(port_state)
 
                 # - Each line in output table - #
-                add_string = f"{port:<9}{port_state}\t {port_service}\n\t    {white}"
+                add_string = "{0}{1}[-]{2} Discovered {3}{2} port on {4}, running {5}\n".format(blue, bold, normal, port_state, port, port_service)
                 table_chain += add_string
 
-            print(table.format(self.target, white + table_chain))
+            print(white + table.format(self.target, table_chain))
 
 
 class Flags(Scannertool):
@@ -92,15 +91,13 @@ class Flags(Scannertool):
 
 
     def port_info(self, Scanner):
-        from config.colors import bold, green
+        from config.colors import bold, green, blue, normal
 
         ports = Scanner[self.target].all_tcp()
-        table = """\ {}
-        +--------------------------------------------------------------------------------+
-        > [{}]
-        > JAR_SOFTWARE = {}
-        > SERVER_INFO  = {}
-        +--------------------------------------------------------------------------------+\n
+        table = """\
+{0}{1}[+] {5}{2} Port deep scan:
+{6}{1}[-] {5}JAR file: {3}
+{6}{1}[-] {5}SERVER_INFO: {4}\n
         \
         """
 
@@ -108,5 +105,5 @@ class Flags(Scannertool):
             port_service = Scanner[self.target]['tcp'][port]['name']
             if port_service == 'minecraft':
                 server_jar = Scanner[self.target]['tcp'][port]['version']
-                server_inf = Scanner[self.target]['tcp'][port]['extrainfo'].replace(',', '\n\t>\t        ')
-                print(table.format(green + bold, port, server_jar, server_inf))
+                server_inf = Scanner[self.target]['tcp'][port]['extrainfo'].replace(',', f'\n{blue}{bold}[-]{normal}')
+                print(table.format(green, bold, port, server_jar, server_inf, normal, blue))
