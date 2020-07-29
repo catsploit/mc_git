@@ -3,7 +3,7 @@
 It is a tool created in Python with the purpose of being a ***Gathering information tool***.  
 Using the **python-nmap** library as the main source. Made for fun and learning something new, *the project will be updated over time.*
 
-![](https://github.com/catsploit/mc_git/blob/master/example.png?raw=True)  
+![](https://github.com/catsploit/mc_git/blob/master/assets/example2.png?raw=True)  
 
 ## *Installing . . .*
 As an essential resource, **nmap** is used, which you must have installed on your device.
