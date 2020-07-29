@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #-*- coding:utf-8 -*-
-requirements = ['python-nmap']
+requirements = ['python-nmap', 'requests']
 
 from config.colors import *
 from config.functions import cprint, clear
