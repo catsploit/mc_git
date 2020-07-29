@@ -30,8 +30,8 @@ system("pip3 install -q python-nmap")
 
 social_media = """
 [{1}{0}GitHub{2}] catsploit
-[{0}{3}Instagram{2}] @catsploit
-[{0}{4}Telegram{2}] @catsploit\n""".format(bold, black, normal, magenta, cyan)
+[{3}{0}Instagram{2}] @catsploit
+[{4}{0}Telegram{2}] @catsploit\n""".format(bold, black, normal, magenta, cyan)
 print(f'Support: {social_media}')
 
 run = input("{0}{1}[+] {0}Set-up, run mc_git.py? y/n: {2}".format(green, bold, normal))

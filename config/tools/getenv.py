@@ -21,7 +21,7 @@ def getEnvironment(parameters):
 
     cprint("[~] getenv >> Scanning target . . .", 'cyan', True)
     Scanner = nmap.PortScanner()
-    result = Scanner.scan(str(ip), '25500-25565', '-sV -O' )
+    result = Scanner.scan(str(ip), '25500-25565', '-sV -O\n' )
 
     # - OS MATCH - #
     OS_LIST = Scanner[str(ip)]['osmatch']

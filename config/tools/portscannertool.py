@@ -95,10 +95,12 @@ class Flags(Scannertool):
         from config.colors import bold, green
 
         ports = Scanner[self.target].all_tcp()
-        table = """\
-        {}[{}]
-        JAR_SOFTWARE = {}
-        SERVER_INFO  = {}\n
+        table = """\ {}
+        +--------------------------------------------------------------------------------+
+        > [{}]
+        > JAR_SOFTWARE = {}
+        > SERVER_INFO  = {}
+        +--------------------------------------------------------------------------------+\n
         \
         """
 
@@ -106,5 +108,5 @@ class Flags(Scannertool):
             port_service = Scanner[self.target]['tcp'][port]['name']
             if port_service == 'minecraft':
                 server_jar = Scanner[self.target]['tcp'][port]['version']
-                server_inf = Scanner[self.target]['tcp'][port]['extrainfo'].replace(',', '\n\t\t      ')
+                server_inf = Scanner[self.target]['tcp'][port]['extrainfo'].replace(',', '\n\t>\t        ')
                 print(table.format(green + bold, port, server_jar, server_inf))

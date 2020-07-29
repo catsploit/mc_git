@@ -57,15 +57,12 @@ class Shell(cmd.Cmd):
 
 	def do_getenv(self, args):
 		import_nmap()
+		parameters = get_args(args)
+
 		try:
-			parameters = get_args(args)
-		except IndexError:
-			cprint("[!] getenv >> Invalid input\n", 'red', True)
-		else:
-			try:
-				getEnvironment(parameters)
-			except Exception as e:
-				cprint(f"[!] getenv >> Error: '{e}'", 'red', True)
+			getEnvironment(parameters)
+		except Exception as e:
+			cprint(f"[!] getenv >> Error: '{e}'", 'red', True)
 
 	def do_help(self, args):
 		print("\nI=================================================================================================I")

@@ -66,7 +66,6 @@ def print_banner():
 def get_args(parameters):
 	if len(parameters) > 1:
 		arguments = parameters.split(' ')
-		#print(arguments)
 		return arguments
 
 	else:
