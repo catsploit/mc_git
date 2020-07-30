@@ -52,9 +52,9 @@ def print_banner():
 		 ███▄ ▄███░ ▄████▄       ▄████  ██░▄▄▄█████░
 		░██░▀█▀ ██░░██▀ ▀█      ██░ ▀█░░██░░  ██░ ░░
 		░██    ░██░░▓█    ▄    ░██░▄▄▄░░██░░ ░██░ ░░
-		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░    ({red}Project log 1.0.1{white})
-		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░    {green}{bold}[+] {white}Modified portscanner output
-		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░      {green}{bold}[+] {white}Added geolocation to getenv
+		░██    ░██ ░▓▓▄ ▄██░   ░▓█  ██░░██░░ ░██░ ░    ({red}Project log 1.1{white})
+		░██░   ░██░░ ▓███▀ ░   ░░▓███▀░░██░  ░██░ ░    {green}{bold}[+] {white}Added 'osmatch' command
+		░ ░░   ░  ░░ ░░ ░  ░    ░░   ░ ░░    ░ ░░      {red}{bold}[-] {white}getenv's osmatch carried{white}
 		░  ░      ░  ░  ░        ░   ░  ░ ░    ░
 		░      ░   ░           ░ ░   ░  ░ ░  ░
     	   		░   ░ ░               ░  ░
