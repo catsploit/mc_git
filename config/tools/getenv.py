@@ -5,6 +5,7 @@ import nmap
 import time
 from config.functions import is_root
 from config.tools.host_geo import geolocate_host
+from config.tools.osmatch import os_match
 from config.colors import *
 
 
@@ -23,25 +24,12 @@ def getEnvironment(parameters):
     result = Scanner.scan(str(ip), '25500-25565', '-sV -O\n' )
 
     # - OS MATCH - #
-    OS_LIST = Scanner[str(ip)]['osmatch']
-    chances = []
-    for match in range(len(OS_LIST)):
-        accuracy = Scanner[str(ip)]['osmatch'][match]['osclass'][0]['accuracy']
-        chances.append(int(accuracy))
-
-    OS_CHOOSEN = max(chances)
-    for chance in range(len(OS_LIST)):
-        select = OS_LIST[chance]['osclass'][0]
-        if select['accuracy'] == str(OS_CHOOSEN):
-            osname = Scanner[str(ip)]['osmatch'][chance]['name']
-            cpe = OS_LIST[match]['osclass'][0]['cpe'][0].strip('cpe:/o:')
-            break
-
+    os_dict = os_match(ip)
     os_string = """{5}
 ---------OS_MATCH---------
 {3}{4}[-] {5}OS : {6}{0}
 {3}{4}[-] {5}CPE : {6}{1}
-{3}{4}[-] {5}CHANCES : {6}{2}{5}%\n""".format(osname, cpe, OS_CHOOSEN, blue, bold, normal, red)
+{3}{4}[-] {5}CHANCES : {6}{2}{5}%\n""".format(os_dict['osname'], os_dict['cpe'], os_dict['accuracy'], blue, bold, normal, red)
 
     # - Printing OS MATCH RESULTS - #
     print("{0}{1}[+] {0}getenv >> {1}MATCH!{0} OS-scan results:".format(green, bold))
