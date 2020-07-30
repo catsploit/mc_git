@@ -7,6 +7,7 @@ from config.colors import *
 from config.tools.gethost import getbyhost, getbyhostdns
 from config.tools.getenv import getEnvironment
 from config.tools.host_geo import geolocate_host
+from config.tools.osmatch import os_match
 from config.tools.portscannertool import Scannertool
 
 
@@ -58,11 +59,14 @@ class Shell(cmd.Cmd):
 	def do_getenv(self, args):
 		import_nmap()
 		parameters = get_args(args)
+		if parameters != 0:
+				getEnvironment(parameters)
 
-		try:
-			getEnvironment(parameters)
-		except Exception as e:
-			cprint(f"[!] getenv >> Error: '{e}'", 'red', True)
+	def do_osmatch(self, args):
+		parameters = get_args(args)
+		if parameters != 0:
+			target = parameters[0]
+			os_match(target, True)
 
 	def do_help(self, args):
 		print("\nI=================================================================================================I")

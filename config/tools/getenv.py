@@ -7,7 +7,6 @@ from config.functions import is_root
 from config.tools.host_geo import geolocate_host
 from config.colors import *
 
-class RootRequired(Exception): pass
 
 def getEnvironment(parameters):
     ip = parameters[0]
